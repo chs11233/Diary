@@ -15,9 +15,6 @@
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
         <activity
-            android:name="com.holiday.diary.NoteTakerActivity"
-            android:exported="false" />
-        <activity
             android:name="com.holiday.diary.CreateActivity"
             android:exported="false" />
         <activity
