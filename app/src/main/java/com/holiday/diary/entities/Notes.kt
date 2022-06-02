@@ -17,9 +17,6 @@ class Notes: Serializable {
     @ColumnInfo(name = "date_time")
     var dateTime:String? = null
 
-    @ColumnInfo(name = "web_link")
-    var webLink:String? = null
-
     @ColumnInfo(name = "color")
     var color:String? = null
 

@@ -1,5 +1,7 @@
 package com.holiday.diary
 
+import android.Manifest
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,12 +20,13 @@ class CreateNoteFragment : BaseFragment() {
     private var mBinding: FragmentCreateNoteBinding? = null
     private val binding get() = mBinding!!
 
-    var currentDate:String? = null
+    var currentDate: String? = null
+    private var noteId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
+
+        noteId = requireArguments().getInt("noteId", -1)
     }
 
     override fun onCreateView(
@@ -45,40 +48,77 @@ class CreateNoteFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (noteId != -1) {
+            launch {
+                context?.let {
+                    var notes = NotesDatabase.getDatabase(it).noteDao().getSpecificNote(noteId)
+                    binding.colorView.setBackgroundColor(Color.parseColor(notes.color))
+                    binding.etNote.setText(notes.noteText)
+                }
+            }
+        }
+
         val date = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
         currentDate = date.format(Date())
 
         binding.tvDateTime.text = currentDate
 
         binding.imgDone.setOnClickListener {
-            replaceFragment(HomeFragment.newInstance(),false)
+            if (noteId != -1) {
+                updateNote()
+            } else {
+                saveNote()
+            }
+        }
+
+        binding.imgBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 
     private fun saveNote() {
-        if(binding.etNote.text.isNullOrEmpty()){
-            Toast.makeText(context,"내용을 입력해주세요",Toast.LENGTH_SHORT).show()
+        if (binding.etNote.text.isNullOrEmpty()) {
+            Toast.makeText(context, "내용을 입력해주세요", Toast.LENGTH_SHORT).show()
+        } else {
+
+            launch {
+                val notes = Notes()
+                notes.noteText = binding.etNote.text.toString()
+                notes.dateTime = currentDate
+
+                context?.let {
+                    NotesDatabase.getDatabase(it).noteDao().insertNotes(notes)
+                    binding.etNote.setText("")
+                    requireActivity().supportFragmentManager.popBackStack()
+                }
+
+            }
         }
+    }
+
+    private fun updateNote(){
+        launch {
+            context?.let {
+                var notes = NotesDatabase.getDatabase(it).noteDao().getSpecificNote(noteId)
+                notes.noteText = binding.etNote.text.toString()
+                notes.dateTime = currentDate
+
+                NotesDatabase.getDatabase(it).noteDao().updateNote(notes)
+                binding.etNote.setText("")
+                requireActivity().supportFragmentManager.popBackStack()
+            }
+        }
+    }
+
+    private fun deleteNote(){
 
         launch {
-            val notes = Notes()
-            notes.noteText = binding.etNote.text.toString()
-            notes.dateTime = currentDate
-
             context?.let {
-                NotesDatabase.getDatabase(it).noteDao().insertNotes(notes)
-                binding.etNote.setText("")
+                NotesDatabase.getDatabase(it).noteDao().deleteSpecificNote(noteId)
+                requireActivity().supportFragmentManager.popBackStack()
             }
-
         }
     }
 
-    fun replaceFragment(fragment:Fragment, istransition:Boolean){
-        val fragmentTransition = requireActivity().supportFragmentManager.beginTransaction()
-
-        if (istransition){
-            fragmentTransition.setCustomAnimations(android.R.anim.slide_out_right,android.R.anim.slide_in_left)
-        }
-        fragmentTransition.replace(R.id.frame_layout,fragment).addToBackStack(fragment.javaClass.simpleName).commit()
-    }
 }

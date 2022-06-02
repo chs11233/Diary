@@ -31,9 +31,9 @@ class CalActivity : AppCompatActivity() {
             checkDay(year, month, dayOfMonth, userID)
         }
 
-        binding.contextEditText.setOnClickListener {
-            startActivity(Intent(this,CreateActivity::class.java))
-        }
+//        binding.contextEditText.setOnClickListener {
+//            startActivity(Intent(this,CreateActivity::class.java))
+//        }
     }
 
     // 달력 내용 조회, 수정

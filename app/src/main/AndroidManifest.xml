@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.holiday.diary">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,9 +16,6 @@
         android:theme="@style/Theme.Diary"
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
-        <activity
-            android:name="com.holiday.diary.CreateActivity"
-            android:exported="false" />
         <activity
             android:name="com.holiday.diary.CalActivity"
             android:exported="false" />

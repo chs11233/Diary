@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutNote"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_5sdp"
@@ -34,12 +36,28 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/tvWebLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:autoLink="web"
+                android:ellipsize="end"
+                android:fontFamily="@font/manrope_bold"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey"
+                android:textSize="@dimen/_12ssp"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/tvDateTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/manrope_bold"
+                android:fontFamily="@font/manrope_regular"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingTop="@dimen/_2sdp"
+                android:paddingBottom="@dimen/_5sdp"
                 android:text="@string/notes"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_9ssp"
