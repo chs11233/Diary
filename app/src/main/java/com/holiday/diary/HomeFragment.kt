@@ -1,13 +1,11 @@
 package com.holiday.diary
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.holiday.diary.adapter.NotesAdapter
 import com.holiday.diary.database.NotesDatabase
@@ -52,7 +50,7 @@ class HomeFragment : BaseFragment() {
 
         binding.recyclerView.setHasFixedSize(true)
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
+        binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
 
         launch {
             context?.let {
@@ -88,13 +86,11 @@ class HomeFragment : BaseFragment() {
                 notesAdapter.notifyDataSetChanged()
                 return true
             }
-
         })
     }
 
     private val onClicked = object :NotesAdapter.OnItemClickListener{
         override fun onClicked(notesId: Int) {
-
 
             var fragment :Fragment
             var bundle = Bundle()
@@ -104,7 +100,6 @@ class HomeFragment : BaseFragment() {
 
             replaceFragment(fragment,false)
         }
-
     }
 
     fun replaceFragment(fragment:Fragment, istransition:Boolean){
@@ -115,5 +110,4 @@ class HomeFragment : BaseFragment() {
         }
         fragmentTransition.replace(R.id.frame_layout,fragment).addToBackStack(fragment.javaClass.simpleName).commit()
     }
-
 }
