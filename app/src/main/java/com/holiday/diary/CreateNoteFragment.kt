@@ -1,13 +1,11 @@
 package com.holiday.diary
 
-import android.Manifest
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,11 +59,15 @@ class CreateNoteFragment : BaseFragment() {
                     var notes = NotesDatabase.getDatabase(it).noteDao().getSpecificNote(noteId)
                     binding.colorView.setBackgroundColor(Color.parseColor(notes.color))
                     binding.etNote.setText(notes.noteText)
+                    binding.deleteBtn.visibility = View.VISIBLE
+                    binding.l1.visibility = View.GONE
                 }
             }
+        } else {
+            binding.deleteBtn.visibility = View.GONE
         }
         LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
-            BroadcastReceiver, IntentFilter()
+            BroadcastReceiver, IntentFilter("color_action")
         )
 
         val date = SimpleDateFormat("yyyy/M/dd hh:mm:ss")
@@ -74,7 +76,12 @@ class CreateNoteFragment : BaseFragment() {
         binding.colorView.setBackgroundColor(Color.parseColor(selectedColor))
         binding.tvDateTime.text = currentDate
 
-        binding.imgDone.setOnClickListener {
+        binding.deleteBtn.setOnClickListener {
+            Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
+            deleteNote()
+        }
+
+        binding.doneBtn.setOnClickListener {
             if (noteId != -1) {
                 updateNote()
             } else {
@@ -82,9 +89,10 @@ class CreateNoteFragment : BaseFragment() {
             }
         }
 
-        binding.imgBack.setOnClickListener {
+        binding.backBtn.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
+
         setListener()
     }
 
@@ -113,7 +121,6 @@ class CreateNoteFragment : BaseFragment() {
                 var notes = NotesDatabase.getDatabase(it).noteDao().getSpecificNote(noteId)
                 notes.noteText = binding.etNote.text.toString()
                 notes.dateTime = currentDate
-                notes.color = selectedColor
 
                 NotesDatabase.getDatabase(it).noteDao().updateNote(notes)
                 binding.etNote.setText("")
@@ -182,7 +189,7 @@ class CreateNoteFragment : BaseFragment() {
             binding.imgNote7.setImageResource(0)
             selectedColor = "#FF6666"
 
-            val intent = Intent()
+            val intent = Intent("color_action")
             intent.putExtra("action", "Red")
             intent.putExtra("selectedColor", selectedColor)
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
@@ -198,7 +205,7 @@ class CreateNoteFragment : BaseFragment() {
             binding.imgNote7.setImageResource(0)
             selectedColor = "#FF9F4A"
 
-            val intent = Intent()
+            val intent = Intent("color_action")
             intent.putExtra("action", "Orange")
             intent.putExtra("selectedColor", selectedColor)
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
@@ -214,7 +221,7 @@ class CreateNoteFragment : BaseFragment() {
             binding.imgNote7.setImageResource(0)
             selectedColor = "#F4CE6A"
 
-            val intent = Intent()
+            val intent = Intent("color_action")
             intent.putExtra("action", "Yellow")
             intent.putExtra("selectedColor", selectedColor)
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
@@ -230,7 +237,7 @@ class CreateNoteFragment : BaseFragment() {
             binding.imgNote7.setImageResource(0)
             selectedColor = "#02B290"
 
-            val intent = Intent()
+            val intent = Intent("color_action")
             intent.putExtra("action", "Green")
             intent.putExtra("selectedColor", selectedColor)
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
@@ -246,7 +253,7 @@ class CreateNoteFragment : BaseFragment() {
             binding.imgNote7.setImageResource(0)
             selectedColor = "#5DA3FA"
 
-            val intent = Intent()
+            val intent = Intent("color_action")
             intent.putExtra("action", "Blue")
             intent.putExtra("selectedColor", selectedColor)
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
@@ -260,9 +267,9 @@ class CreateNoteFragment : BaseFragment() {
             binding.imgNote5.setImageResource(0)
             binding.imgNote6.setImageResource(R.drawable.ic_tick)
             binding.imgNote7.setImageResource(0)
-            selectedColor = "#FF6200EE"
+            selectedColor = "#FFBB86FC"
 
-            val intent = Intent()
+            val intent = Intent("color_action")
             intent.putExtra("action", "Purple")
             intent.putExtra("selectedColor", selectedColor)
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
@@ -278,7 +285,7 @@ class CreateNoteFragment : BaseFragment() {
             binding.imgNote7.setImageResource(R.drawable.ic_tick)
             selectedColor = "#FFFFFFFF"
 
-            val intent = Intent()
+            val intent = Intent("color_action")
             intent.putExtra("action", "White")
             intent.putExtra("selectedColor", selectedColor)
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)

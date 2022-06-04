@@ -2,7 +2,6 @@ package com.holiday.diary
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.holiday.diary.databinding.FragmentHomeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

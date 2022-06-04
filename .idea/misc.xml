@@ -6,11 +6,15 @@
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/background1.xml" value="0.211" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/ic_add.xml" value="0.211" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/ic_back.xml" value="0.211" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.218" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/ic_delete.xml" value="0.218" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/ic_done.xml" value="0.211" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/ic_image.xml" value="0.211" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/ic_link.xml" value="0.211" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/ic_more.xml" value="0.211" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/ic_note.xml" value="0.211" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/ic_pin.xml" value="0.218" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/ic_search.xml" value="0.218" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/ic_tick.xml" value="0.211" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/note_color_1.xml" value="0.2" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/drawable/note_color_2.xml" value="0.211" />
@@ -23,10 +27,13 @@
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/layout/activity_create.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/layout/activity_note_taker.xml" value="0.2526041666666667" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/layout/fragment_cal.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/layout/fragment_create_note.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/layout/fragment_home.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/layout/fragment_note.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/layout/item_notes.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/layout/notes_list.xml" value="0.2526041666666667" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/Diary/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>

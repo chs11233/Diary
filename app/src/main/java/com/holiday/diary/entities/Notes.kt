@@ -20,6 +20,15 @@ class Notes: Serializable {
     @ColumnInfo(name = "color")
     var color:String? = null
 
+    @ColumnInfo(name = "year")
+    var year :Int? = null
+
+    @ColumnInfo(name = "month")
+    var month :Int? = null
+
+    @ColumnInfo(name = "day")
+    var day :Int? = null
+
     override fun toString(): String {
         return "$noteText : $dateTime"
     }

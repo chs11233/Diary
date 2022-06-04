@@ -17,9 +17,6 @@
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
         <activity
-            android:name="com.holiday.diary.CalActivity"
-            android:exported="false" />
-        <activity
             android:name="com.holiday.diary.MainActivity"
             android:exported="true">
             <intent-filter>

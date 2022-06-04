@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="캘린더"
+        android:enabled="true"
+        android:id="@+id/menu_cal"
+        android:icon="@drawable/ic_calendar" />
+    <item
+        android:title="다이어리"
+        android:enabled="true"
+        android:id="@+id/menu_home"
+        android:icon="@drawable/ic_diary" />
+    <item
+        android:title="노트"
+        android:enabled="true"
+        android:id="@+id/menu_note"
+        android:icon="@drawable/ic_note" />
+</menu>
