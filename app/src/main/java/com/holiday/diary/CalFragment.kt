@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.holiday.diary.adapter.NotesAdapter
+import com.holiday.diary.dao.NoteDao
 import com.holiday.diary.database.NotesDatabase
 import com.holiday.diary.databinding.FragmentCalBinding
 import com.holiday.diary.entities.Notes
@@ -19,9 +20,9 @@ class CalFragment : BaseFragment() {
     var arrNotes = ArrayList<Notes>()
     var notesAdapter: NotesAdapter = NotesAdapter()
 
-    private var year : Int = 0
-    private var month : Int = 0
-    private var day : Int = 0
+    private var year: Int = 0
+    private var month: Int = 0
+    private var day: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,21 +51,23 @@ class CalFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.calendarRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
-        binding.calendarRecyclerView.adapter = notesAdapter
+        binding.calendarRecyclerView.setHasFixedSize(true)
+        binding.calendarRecyclerView.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
         binding.calendarView.setOnDateChangeListener { _, year, month, day ->
             this.year = year
-            this.month = month+1
+            this.month = month + 1
             this.day = day
 
             binding.calendarDateText.text = "${this.year}/${this.month}/${this.day}"
 
             launch {
                 context?.let {
-                    var notes = NotesDatabase.getDatabase(it).noteDao().readDateData(dateTime = day)
+                    var notes = NotesDatabase.getDatabase(it).noteDao().getAllNotes()
                     notesAdapter!!.setData(notes)
                     arrNotes = notes as ArrayList<Notes>
+                    binding.calendarRecyclerView.adapter = notesAdapter
                 }
             }
         }
