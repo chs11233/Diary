@@ -49,8 +49,8 @@ class NoteFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.recyclerView.setHasFixedSize(true)
-
-        binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+        binding.recyclerView.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
         launch {
             context?.let {
@@ -64,20 +64,19 @@ class NoteFragment : BaseFragment() {
         notesAdapter!!.setOnClickListener(onClicked)
 
         binding.fabCreate.setOnClickListener {
-            replaceFragment(CreateNoteFragment.newInstance(),false)
+            replaceFragment(CreateNoteFragment.newInstance(), false)
         }
 
-        binding.searchView.setOnQueryTextListener( object : SearchView.OnQueryTextListener{
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return true
             }
 
             override fun onQueryTextChange(p0: String?): Boolean {
-
                 var tempArr = ArrayList<Notes>()
 
-                for (arr in arrNotes){
-                    if (arr.noteText!!.lowercase(Locale.getDefault()).contains(p0.toString())){
+                for (arr in arrNotes) {
+                    if (arr.noteText!!.lowercase(Locale.getDefault()).contains(p0.toString())) {
                         tempArr.add(arr)
                     }
                 }
@@ -89,25 +88,27 @@ class NoteFragment : BaseFragment() {
         })
     }
 
-    private val onClicked = object :NotesAdapter.OnItemClickListener{
+    private val onClicked = object : NotesAdapter.OnItemClickListener {
         override fun onClicked(notesId: Int) {
 
-            var fragment :Fragment
+            var fragment: Fragment
             var bundle = Bundle()
-            bundle.putInt("noteId",notesId)
+            bundle.putInt("noteId", notesId)
             fragment = CreateNoteFragment.newInstance()
             fragment.arguments = bundle
 
-            replaceFragment(fragment,false)
+            replaceFragment(fragment, false)
         }
     }
 
-    fun replaceFragment(fragment:Fragment, istransition:Boolean){
+    fun replaceFragment(fragment: Fragment, istransition: Boolean) {
         val fragmentTransition = requireActivity().supportFragmentManager.beginTransaction()
 
-        if (istransition){
-            fragmentTransition.setCustomAnimations(android.R.anim.slide_out_right,android.R.anim.slide_in_left)
+        if (istransition) {
+            fragmentTransition.setCustomAnimations(android.R.anim.slide_out_right,
+                android.R.anim.slide_in_left)
         }
-        fragmentTransition.replace(R.id.frame_layout,fragment).addToBackStack(fragment.javaClass.simpleName).commit()
+        fragmentTransition.replace(R.id.frame_layout, fragment)
+            .addToBackStack(fragment.javaClass.simpleName).commit()
     }
 }

@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class CreateNoteFragment : BaseFragment() {
-
     private var mBinding: FragmentCreateNoteBinding? = null
     private val binding get() = mBinding!!
 
@@ -66,6 +65,7 @@ class CreateNoteFragment : BaseFragment() {
         } else {
             binding.deleteBtn.visibility = View.GONE
         }
+
         LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
             BroadcastReceiver, IntentFilter("color_action")
         )
@@ -121,7 +121,6 @@ class CreateNoteFragment : BaseFragment() {
                 var notes = NotesDatabase.getDatabase(it).noteDao().getSpecificNote(noteId)
                 notes.noteText = binding.etNote.text.toString()
                 notes.dateTime = currentDate
-
                 NotesDatabase.getDatabase(it).noteDao().updateNote(notes)
                 binding.etNote.setText("")
                 requireActivity().supportFragmentManager.popBackStack()

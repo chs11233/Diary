@@ -10,6 +10,8 @@ import com.holiday.diary.entities.Notes
 @Database(entities = [Notes::class], version = 1, exportSchema = false)
 abstract class NotesDatabase : RoomDatabase() {
 
+    abstract fun noteDao(): NoteDao
+
     companion object {
         var notesDatabase: NotesDatabase? = null
 
@@ -25,6 +27,4 @@ abstract class NotesDatabase : RoomDatabase() {
             return notesDatabase!!
         }
     }
-
-    abstract fun noteDao(): NoteDao
 }

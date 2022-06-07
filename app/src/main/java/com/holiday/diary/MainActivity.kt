@@ -14,7 +14,8 @@ class MainActivity : AppCompatActivity() {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.beginTransaction().add(binding.frameLayout.id, HomeFragment()).commit()
+        supportFragmentManager.beginTransaction().add(binding.frameLayout.id, HomeFragment())
+            .commit()
 
         binding.bn.setOnItemSelectedListener {
             replaceFragment(
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         val fragments = supportFragmentManager.fragments
-        if (fragments.size == 0){
+        if (fragments.size == 0) {
             finish()
         }
     }

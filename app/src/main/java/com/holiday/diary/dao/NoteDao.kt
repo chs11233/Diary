@@ -1,6 +1,5 @@
 package com.holiday.diary.dao
 
-import androidx.constraintlayout.helper.widget.Flow
 import androidx.room.*
 import com.holiday.diary.entities.Notes
 

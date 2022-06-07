@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.holiday.diary.adapter.NotesAdapter
 import com.holiday.diary.database.NotesDatabase
@@ -62,7 +61,6 @@ class CalFragment : BaseFragment() {
             binding.calendarDateText.text = "${this.year}/${this.month}/${this.day}"
 
             launch {
-
                 context?.let {
                     var notes = NotesDatabase.getDatabase(it).noteDao().readDateData(dateTime = day)
                     notesAdapter!!.setData(notes)
@@ -71,5 +69,4 @@ class CalFragment : BaseFragment() {
             }
         }
     }
-
 }
