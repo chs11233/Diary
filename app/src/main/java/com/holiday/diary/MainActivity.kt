@@ -17,12 +17,14 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(binding.frameLayout.id, HomeFragment())
             .commit()
 
+        binding.bn.selectedItemId = R.id.menu_home
+
         binding.bn.setOnItemSelectedListener {
             replaceFragment(
                 when (it.itemId) {
-                    R.id.menu_cal -> CalFragment()
+                    R.id.menu_home -> HomeFragment()
                     R.id.menu_note -> NoteFragment()
-                    else -> HomeFragment()
+                    else -> CalFragment()
                 }
             )
             true

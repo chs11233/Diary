@@ -24,6 +24,4 @@ interface NoteDao {
     @Query("DELETE FROM notes WHERE id =:id")
     suspend fun deleteSpecificNote(id:Int)
 
-    @Query("SELECT * FROM notes WHERE date_time = :dateTime ORDER BY id DESC")
-    suspend fun readDateData(dateTime : Int) : List<Notes>
 }
