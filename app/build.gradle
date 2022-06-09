@@ -53,6 +53,7 @@ dependencies {
     implementation "androidx.room:room-runtime:2.4.2"
     implementation "androidx.room:room-ktx:2.4.2"
     kapt "androidx.room:room-compiler:2.4.2"
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 
     //circle image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -66,4 +67,6 @@ dependencies {
     //coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
 
+    //easy permission
+    implementation 'pub.devrel:easypermissions:3.0.0'
 }

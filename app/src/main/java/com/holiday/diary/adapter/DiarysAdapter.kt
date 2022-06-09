@@ -1,7 +1,8 @@
 package com.holiday.diary.adapter
 
-import android.graphics.Color
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.holiday.diary.databinding.ItemDiarysBinding
@@ -24,10 +25,10 @@ class DiarysAdapter() :
         viewHolder.binding.dvDateTime.text = arrList[position].dateTime
 
         if (arrList[position].imgPath != null){
-            viewHolder.itemView.imgNote.setImageBitmap(BitmapFactory.decodeFile(arrList[position].imgPath))
-            holder.itemView.imgNote.visibility = View.VISIBLE
+            viewHolder.binding.imgNote.setImageBitmap(BitmapFactory.decodeFile(arrList[position].imgPath))
+            viewHolder.binding.imgNote.visibility = View.VISIBLE
         }else{
-            holder.itemView.imgNote.visibility = View.GONE
+            viewHolder.binding.imgNote.visibility = View.GONE
         }
 
         viewHolder.binding.cardView.setOnClickListener {
@@ -39,8 +40,8 @@ class DiarysAdapter() :
         return arrList.size
     }
 
-    fun setData(arrNotesList: List<Diarys>) {
-        arrList = arrNotesList as ArrayList<Diarys>
+    fun setData(arrDiarysList: List<Diarys>) {
+        arrList = arrDiarysList as ArrayList<Diarys>
     }
 
     fun setOnClickListener(listener2: OnItemClickListener) {
