@@ -67,16 +67,20 @@ class CreateDiaryFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
             launch {
                 context?.let {
                     var diarys = DiarysDatabase.getDatabase(it).diaryDao().getSpecificDiary(diaryId)
-                    binding.dtTitle.setText(diarys.diaryText)
+                    binding.dtTitle.setText(diarys.title)
                     binding.dtDiaryDesc.setText(diarys.diaryText)
                     binding.deleteBtn.visibility = View.VISIBLE
 
                     if (diarys.imgPath != "") {
                         selectedImagePath = diarys.imgPath!!
                         binding.imgDiary.setImageBitmap(BitmapFactory.decodeFile(diarys.imgPath))
-                        binding.layoutImage.visibility = View.VISIBLE
+                        binding.layoutImage.visibility = View.GONE
+                        binding.layoutImage2.visibility = View.VISIBLE
+                        binding.imgDiary.visibility = View.VISIBLE
                     } else {
                         binding.layoutImage.visibility = View.GONE
+                        binding.layoutImage2.visibility = View.GONE
+                        binding.imgDiary.visibility = View.GONE
                     }
                 }
             }
@@ -87,7 +91,6 @@ class CreateDiaryFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
         LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
             BroadcastReceiver, IntentFilter("img_action")
         )
-
 
         val date = SimpleDateFormat("yyyy/M/dd hh:mm:ss")
 
@@ -127,10 +130,16 @@ class CreateDiaryFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
                 diarys.dateTime = currentDate
                 diarys.imgPath = selectedImagePath
 
+                val cal = Calendar.getInstance()
+                diarys.year = cal.get(Calendar.YEAR)
+                diarys.month = cal.get(Calendar.MONTH) + 1
+                diarys.day = cal.get(Calendar.DATE)
+
                 context?.let {
                     DiarysDatabase.getDatabase(it).diaryDao().insertDiarys(diarys)
                     binding.dtTitle.setText("")
                     binding.dtDiaryDesc.setText("")
+                    binding.layoutImage2.visibility = View.GONE
                     binding.imgDiary.visibility = View.GONE
                     requireActivity().supportFragmentManager.popBackStack()
                 }
@@ -150,6 +159,7 @@ class CreateDiaryFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
                 DiarysDatabase.getDatabase(it).diaryDao().updateDiary(diarys)
                 binding.dtTitle.setText("")
                 binding.dtDiaryDesc.setText("")
+                binding.layoutImage2.visibility = View.GONE
                 binding.imgDiary.visibility = View.GONE
                 requireActivity().supportFragmentManager.popBackStack()
             }
@@ -173,6 +183,8 @@ class CreateDiaryFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
                     readStorageTask()
                 }
                 else -> {
+                    binding.layoutImage.visibility = View.GONE
+                    binding.imgDiary.visibility = View.GONE
                     selectedColor = p1.getStringExtra("selectedColor")!!
                 }
             }
@@ -238,7 +250,7 @@ class CreateDiaryFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
                         var bitmap = BitmapFactory.decodeStream(inputStream)
                         binding.imgDiary.setImageBitmap(bitmap)
                         binding.imgDiary.visibility = View.VISIBLE
-                        binding.layoutImage.visibility = View.VISIBLE
+                        binding.layoutImage2.visibility = View.VISIBLE
 
                         selectedImagePath = getPathFromUri(selectedImageUrl)!!
                     } catch (e: Exception) {

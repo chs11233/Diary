@@ -14,6 +14,15 @@ class Diarys: Serializable {
     @ColumnInfo(name = "title")
     var title:String? = null
 
+    @ColumnInfo(name = "year")
+    var year:Int? = null
+
+    @ColumnInfo(name = "month")
+    var month:Int? = null
+
+    @ColumnInfo(name = "day")
+    var day:Int? = null
+
     @ColumnInfo(name = "date_time")
     var dateTime:String? = null
 
