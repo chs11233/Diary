@@ -1,5 +1,6 @@
 package com.holiday.diary.dao
 
+import androidx.constraintlayout.helper.widget.Flow
 import androidx.room.*
 import com.holiday.diary.entities.Diarys
 
@@ -24,4 +25,6 @@ interface DiaryDao {
     @Query("DELETE FROM diarys WHERE id =:id")
     suspend fun deleteSpecificDiary(id:Int)
 
+    @Query("SELECT * FROM diarys WHERE year = :year AND month = :month AND day = :day ORDER BY id DESC")
+    fun readDateData(year : Int, month : Int, day : Int) : List<Diarys>
 }

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.holiday.diary.adapter.DiarysAdapter
 import com.holiday.diary.adapter.NotesAdapter
 import com.holiday.diary.database.DiarysDatabase

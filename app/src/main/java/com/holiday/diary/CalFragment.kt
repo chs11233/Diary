@@ -6,19 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.holiday.diary.adapter.NotesAdapter
-import com.holiday.diary.dao.NoteDao
-import com.holiday.diary.database.NotesDatabase
+import com.holiday.diary.adapter.DiarysAdapter
 import com.holiday.diary.databinding.FragmentCalBinding
-import com.holiday.diary.entities.Notes
-import kotlinx.coroutines.launch
+import com.holiday.diary.entities.Diarys
+import com.holiday.diary.viewmodel.DiaryViewModel
+import androidx.fragment.app.viewModels
 
 class CalFragment : BaseFragment() {
     private var mBinding: FragmentCalBinding? = null
     private val binding get() = mBinding!!
 
-    var arrNotes = ArrayList<Notes>()
-    var notesAdapter: NotesAdapter = NotesAdapter()
+    private val diaryViewModel: DiaryViewModel by viewModels()
+    var diarysAdapter: DiarysAdapter = DiarysAdapter()
+    var arrDiarys = ArrayList<Diarys>()
 
     private var year: Int = 0
     private var month: Int = 0
@@ -54,6 +54,7 @@ class CalFragment : BaseFragment() {
         binding.calendarRecyclerView.setHasFixedSize(true)
         binding.calendarRecyclerView.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        binding.calendarRecyclerView.adapter = diarysAdapter
 
         binding.calendarView.setOnDateChangeListener { _, year, month, day ->
             this.year = year
@@ -62,14 +63,7 @@ class CalFragment : BaseFragment() {
 
             binding.calendarDateText.text = "${this.year}/${this.month}/${this.day}"
 
-            launch {
-                context?.let {
-                    var notes = NotesDatabase.getDatabase(it).noteDao().getAllNotes()
-                    notesAdapter!!.setData(notes)
-                    arrNotes = notes as ArrayList<Notes>
-                    binding.calendarRecyclerView.adapter = notesAdapter
-                }
-            }
+            diaryViewModel.readDateData(this.year,this.month,this.day)
         }
     }
 }

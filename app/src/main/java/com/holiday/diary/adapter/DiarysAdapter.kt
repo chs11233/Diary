@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.holiday.diary.databinding.ItemDiarysBinding
 import com.holiday.diary.entities.Diarys
+import com.holiday.diary.viewmodel.DiaryViewModel
 import kotlin.collections.ArrayList
 
 class DiarysAdapter() :
