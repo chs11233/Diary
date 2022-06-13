@@ -8,12 +8,9 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.holiday.diary.adapter.DiarysAdapter
-import com.holiday.diary.adapter.NotesAdapter
 import com.holiday.diary.database.DiarysDatabase
-import com.holiday.diary.database.NotesDatabase
 import com.holiday.diary.databinding.FragmentHomeBinding
 import com.holiday.diary.entities.Diarys
-import com.holiday.diary.entities.Notes
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
