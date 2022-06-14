@@ -9,14 +9,14 @@ class DiaryViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = DiaryRepository(application)
     private val _date = MutableLiveData<Int>()
-    val date : LiveData<Int>
+    val date: LiveData<Int>
         get() = _date
 
-    fun getAllByDate(year : Int, month : Int, day : Int): LiveData<List<Diarys>?> {
+    fun getAllByDate(year: Int, month: Int, day: Int): LiveData<List<Diarys>?> {
         return repository.getAllByDate(year, month, day)
     }
 
-    fun updateDate(year : Int, month : Int, day : Int){
+    fun updateDate(year: Int, month: Int, day: Int) {
         _date.value = year
         _date.value = month
         _date.value = day

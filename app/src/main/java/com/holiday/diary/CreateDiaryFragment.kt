@@ -174,7 +174,7 @@ class CreateDiaryFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
         }
     }
 
-    private val BroadcastReceiver : BroadcastReceiver = object :BroadcastReceiver() {
+    private val BroadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(p0: Context?, p1: Intent?) {
             var actionImg = p1!!.getStringExtra("action")
             when (actionImg!!) {

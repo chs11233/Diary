@@ -19,9 +19,7 @@ abstract class DiarysDatabase : RoomDatabase() {
         fun getDatabase(context: Context): DiarysDatabase {
             if (diarysDatabase == null) {
                 diarysDatabase = Room.databaseBuilder(
-                    context
-                    , DiarysDatabase::class.java
-                    , "diarys.db"
+                    context, DiarysDatabase::class.java, "diarys.db"
                 ).build()
             }
             return diarysDatabase!!

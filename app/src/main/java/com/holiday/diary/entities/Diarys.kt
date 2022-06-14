@@ -6,31 +6,31 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "Diarys")
-class Diarys: Serializable {
+class Diarys : Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    var id:Int? = null
+    var id: Int? = null
 
     @ColumnInfo(name = "title")
-    var title:String? = null
+    var title: String? = null
 
     @ColumnInfo(name = "year")
-    var year:Int? = null
+    var year: Int? = null
 
     @ColumnInfo(name = "month")
-    var month:Int? = null
+    var month: Int? = null
 
     @ColumnInfo(name = "day")
-    var day:Int? = null
+    var day: Int? = null
 
     @ColumnInfo(name = "date_time")
-    var dateTime:String? = null
+    var dateTime: String? = null
 
     @ColumnInfo(name = "diary_text")
-    var diaryText:String? = null
+    var diaryText: String? = null
 
     @ColumnInfo(name = "img_path")
-    var imgPath:String? = null
+    var imgPath: String? = null
 
     override fun toString(): String {
         return "$title : $dateTime"

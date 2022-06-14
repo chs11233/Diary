@@ -24,10 +24,10 @@ class DiarysAdapter() :
         viewHolder.binding.dvDesc.text = arrList[position].diaryText
         viewHolder.binding.dvDateTime.text = arrList[position].dateTime
 
-        if (arrList[position].imgPath != null){
+        if (arrList[position].imgPath != null) {
             viewHolder.binding.imgNote.setImageBitmap(BitmapFactory.decodeFile(arrList[position].imgPath))
             viewHolder.binding.imgNote.visibility = View.VISIBLE
-        }else{
+        } else {
             viewHolder.binding.imgNote.visibility = View.GONE
         }
 
@@ -51,8 +51,8 @@ class DiarysAdapter() :
     class DiarysViewHolder(val binding: ItemDiarysBinding) : RecyclerView.ViewHolder(binding.root) {
     }
 
-    fun setDiaryList(diarys: List<Diarys>?){
-        if (diarys != null){
+    fun setDiaryList(diarys: List<Diarys>?) {
+        if (diarys != null) {
             arrList.clear()
             arrList.addAll(diarys)
         } else {

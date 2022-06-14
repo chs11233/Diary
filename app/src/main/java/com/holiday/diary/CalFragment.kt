@@ -49,7 +49,7 @@ class CalFragment : BaseFragment() {
         val recyclerView = binding.calendarRecyclerView
         setRecyclerView(recyclerView)
 
-        diaryViewModel.date.observe(viewLifecycleOwner, Observer{
+        diaryViewModel.date.observe(viewLifecycleOwner, Observer {
             diaryViewModel.getAllByDate(year, month, day)
                 .observe(viewLifecycleOwner) { diary ->
                     if (diary != null) {
@@ -69,7 +69,7 @@ class CalFragment : BaseFragment() {
         }
     }
 
-    private fun setRecyclerView(recyclerView: RecyclerView){
+    private fun setRecyclerView(recyclerView: RecyclerView) {
         adapter = DiarysAdapter()
         recyclerView.adapter = adapter
     }
