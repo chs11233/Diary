@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Diary"
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
+
+        <!--  app id 입력-->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id"/>
+
         <activity
             android:name="com.holiday.diary.MainActivity"
             android:exported="true">

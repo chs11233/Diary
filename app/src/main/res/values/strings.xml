@@ -5,6 +5,11 @@
     <string name="notes_desc">내용을 입력해주세요.</string>
     <string name="storage_permission_text">This app needs access to your storage.</string>
     <string name="search">검색</string>
+    <string name="admob_app_id">ca-app-pub-7379797735779903~3757559170</string>
+    <string name="banner_ad_unit_id">ca-app-pub-7379797735779903/4575816826</string>
+    <string name="banner_ad_unit_id_for_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="native_ad_unit_id">ca-app-pub-7379797735779903/7465704040</string>
+    <string name="native_ad_unit_id_for_test">ca-app-pub-3940256099942544/2247696110</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
