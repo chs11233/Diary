@@ -51,8 +51,16 @@ class DiarysAdapter() :
     class DiarysViewHolder(val binding: ItemDiarysBinding) : RecyclerView.ViewHolder(binding.root) {
     }
 
+    fun setDiaryList(diarys: List<Diarys>?){
+        if (diarys != null){
+            arrList.clear()
+            arrList.addAll(diarys)
+        } else {
+            arrList.clear()
+        }
+    }
+
     interface OnItemClickListener {
         fun onClicked(diaryId: Int)
     }
-
 }

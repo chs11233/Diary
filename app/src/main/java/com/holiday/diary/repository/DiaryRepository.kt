@@ -1,11 +1,20 @@
 package com.holiday.diary.repository
 
+import android.app.Application
+import androidx.lifecycle.LiveData
 import com.holiday.diary.dao.DiaryDao
+import com.holiday.diary.database.DiarysDatabase
 import com.holiday.diary.entities.Diarys
 
-class DiaryRepository(private val diaryDao: DiaryDao) {
+class DiaryRepository(application: Application) {
+    private val diaryDao: DiaryDao
 
-    fun readDateData(year : Int, month : Int, day : Int): List<Diarys> {
-        return diaryDao.readDateData(year, month, day)
+    init {
+        var db = DiarysDatabase.getDatabase(application)
+        diaryDao = db!!.diaryDao()
+    }
+
+    fun getAllByDate(year: Int, month: Int, day: Int): LiveData<List<Diarys>?> {
+        return diaryDao.getAllByDate(year, month, day)
     }
 }
