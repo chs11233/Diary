@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Diary</string>
+    <string name="app_name">다이어리메모</string>
     <string name="notes">노트</string>
     <string name="notes_title">타이틀</string>
     <string name="notes_desc">내용을 입력해주세요.</string>

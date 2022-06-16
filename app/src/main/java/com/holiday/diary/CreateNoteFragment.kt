@@ -1,5 +1,6 @@
 package com.holiday.diary
 
+import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -11,6 +12,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.holiday.diary.database.NotesDatabase
 import com.holiday.diary.databinding.FragmentCreateNoteBinding
 import com.holiday.diary.entities.Notes
@@ -21,6 +26,8 @@ import java.util.*
 class CreateNoteFragment : BaseFragment() {
     private var mBinding: FragmentCreateNoteBinding? = null
     private val binding get() = mBinding!!
+
+    private var mInterstitialAd: InterstitialAd? = null
 
     var selectedColor = "#F5F5F5"
     var currentDate: String? = null
@@ -51,6 +58,16 @@ class CreateNoteFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        var adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(requireContext(),"ca-app-pub-7379797735779903/5496455755", adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                mInterstitialAd = null
+            }
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                mInterstitialAd = interstitialAd
+            }
+        })
 
         if (noteId != -1) {
             launch {
@@ -86,6 +103,9 @@ class CreateNoteFragment : BaseFragment() {
                 updateNote()
             } else {
                 saveNote()
+                if (mInterstitialAd != null) {
+                    mInterstitialAd?.show(requireContext() as Activity)
+                }
             }
         }
 

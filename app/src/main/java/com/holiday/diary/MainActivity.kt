@@ -31,9 +31,6 @@ class MainActivity : AppCompatActivity() {
             )
             true
         }
-
-        MobileAds.initialize(this) {}
-        binding.adView.loadAd(AdRequest.Builder().build())
     }
 
     private fun replaceFragment(fragment: Fragment) {

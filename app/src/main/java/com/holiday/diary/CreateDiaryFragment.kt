@@ -1,6 +1,7 @@
 package com.holiday.diary
 
 import android.Manifest
+import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -15,6 +16,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.holiday.diary.database.DiarysDatabase
 import com.holiday.diary.databinding.FragmentCreateDiaryBinding
 import com.holiday.diary.entities.Diarys
@@ -28,6 +33,8 @@ class CreateDiaryFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
     EasyPermissions.RationaleCallbacks {
     private var mBinding: FragmentCreateDiaryBinding? = null
     private val binding get() = mBinding!!
+
+    private var mInterstitialAd: InterstitialAd? = null
 
     var currentDate: String? = null
     private var READ_STORAGE_PERM = 123
@@ -61,6 +68,16 @@ class CreateDiaryFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        var adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(requireContext(),"ca-app-pub-7379797735779903/5496455755", adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                mInterstitialAd = null
+            }
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                mInterstitialAd = interstitialAd
+            }
+        })
 
         if (diaryId != -1) {
             launch {
@@ -106,6 +123,9 @@ class CreateDiaryFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
                 updateDiary()
             } else {
                 saveDiary()
+                if (mInterstitialAd != null) {
+                    mInterstitialAd?.show(requireContext() as Activity)
+                }
             }
         }
 
