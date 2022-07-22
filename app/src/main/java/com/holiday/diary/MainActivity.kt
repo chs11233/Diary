@@ -3,8 +3,6 @@ package com.holiday.diary
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
 import com.holiday.diary.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
